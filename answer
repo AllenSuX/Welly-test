@@ -1,0 +1,89 @@
+//1 建立函式 fibonacci 代入參數 position，position 表示的是想要得到 fibonacci sequence 中的第幾個數字的值。
+
+function fibonacci (position) {
+    if (position == 0) {
+      return 0
+    } else if(position>0 && position<=2){
+      return 1  
+    }
+    else
+    {
+      return fibonacci(position - 1) + fibonacci(position - 2)
+    }
+  }
+
+  //2 使用 Linked List 實作 Stack ，實作需包含以下方法。 push() : 添加新元素。 pop():移除元素並返回被移除的元素。 size():返回所有元素數量。 
+
+ class Node{
+     constructor(val){
+         this.val=val;
+         this.next=null;
+     }
+ }
+ class Stack{
+     constructor(){
+         this.first=null;
+         this.last=null;
+         this.size=0;
+     }
+     push = function(val){
+        let newNode = new Node(val);
+        if(!this.first){
+            this.first=newNode;
+            this.last=newNode;
+        }else{
+            let temp=this.first;
+            this.first=newNode;
+            this.first.next=temp;
+        }
+        this.size++;
+    }
+    pop = function(){
+        if(!this.first) 
+        return null;
+        let temp = this.first;
+        if(this.first ===this.last){
+            this.last=null;
+        }
+        this.first=this.first.next;
+        this.size --;
+        return temp.val;
+    }
+ }
+//3 將下列輸入資料整合成期望的輸出結果。 (此題不會,如果貴公司技術人員知道如何解題的話,希望能提供給我,讓我有學習的機會,感謝您)
+        //輸入資料:
+
+        const userIds = ['U01', 'U02', 'U03'] 
+        const orderIds = ['T01', 'T02', 'T03', 'T04'] 
+        const userOrders = [			
+        { userId: 'U01', orderIds: ['T01', 'T02'] },
+            { userId: 'U02', orderIds: [] },
+            { userId: 'U03', orderIds: ['T03'] },
+        ]
+        const userData = { 'U01': 'Tom', 'U02': 'Sam', 'U03': 'John' } 
+        const orderData = {						
+        'T01': { name: 'A', price: 499 }, 
+        'T02': { name: 'B', price: 599 },
+        'T03': { name: 'C', price: 699 }, 
+        'T04': { name: 'D', price: 799 }
+        } 
+        //輸出結果:
+        const result = [ 
+            {
+                user: { id: 'U01', name: 'Tom' }, 
+                orders: [
+                    { id: 'T01', name: 'A', price: 499 },
+                    { id: 'T02', name: 'B', price: 599 }, 
+                ],
+            },
+            {
+                user: { id:'U02',name:'Sam' },
+                orders:[]
+            },
+            {
+                user: { id:'U03',name:'John' },
+                orders:[
+                    { id: 'T03',name: 'C', price:699 }
+                ]
+            },
+        ]
